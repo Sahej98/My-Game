@@ -1,0 +1,12 @@
+.game-cont{
+    height: 80vh;
+    width: 80vw;
+    background: #fff;
+    border: 4px dashed #ccc;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+}

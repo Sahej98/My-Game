@@ -1,0 +1,7 @@
+.plot{
+    background: blue;
+    height: calc(25% - 1rem);
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+}
+
