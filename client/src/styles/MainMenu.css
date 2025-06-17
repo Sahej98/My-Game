@@ -1,0 +1,20 @@
+.main-menu {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+}
+
+.main-menu > li {
+  padding: 1rem 2rem;
+}
+
+.main-menu > li > a {
+  color: #fff;
+  text-decoration: none;
+}
+

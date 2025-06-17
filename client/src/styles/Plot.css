@@ -1,7 +1,10 @@
-.plot{
-    background: blue;
-    height: calc(25% - 1rem);
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
+.plot {
+  background: transparent;
+  border: 2px dashed #ccc;
+  height: calc(25% - 1rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-

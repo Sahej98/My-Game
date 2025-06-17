@@ -1,0 +1,42 @@
+.action-bar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    background: #1e1e1e;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 7rem;
+    height: 100%;
+    width: 100%;
+}
+
+.action > a{
+    color: #868686;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.action > a:hover{
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+    .action>a>p{
+        display: none;
+    }
+
+    .actions{
+        gap: 0rem;
+        justify-content: space-evenly;
+    }
+}
