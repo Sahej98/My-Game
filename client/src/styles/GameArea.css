@@ -1,7 +1,10 @@
 .game-cont{
     height: 80vh;
-    width: 100%;
-    overflow: scroll;
+    max-width: 100%;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    overflow-y: scroll;
     background: #fff;
     border-radius: 12px;
     display: flex;
