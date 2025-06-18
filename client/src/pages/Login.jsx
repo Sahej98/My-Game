@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/auth/login',
+        'https://my-game-m48h.onrender.com/api/auth/login',
         form
       );
 

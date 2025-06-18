@@ -15,8 +15,8 @@ export default function StatusBar() {
     const fetchData = async () => {
       try {
         const [userRes, configRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/user/${userId}`),
-          axios.get('http://localhost:5000/api/level-config'),
+          axios.get(`https://my-game-m48h.onrender.com/api/user/${userId}`),
+          axios.get('https://my-game-m48h.onrender.com/api/level-config'),
         ]);
         setUserData(userRes.data);
         setLevelConfig(configRes.data);

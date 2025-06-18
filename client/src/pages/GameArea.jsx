@@ -9,7 +9,9 @@ export default function GameArea() {
   useEffect(() => {
     const fetchPlots = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/plots');
+        const res = await axios.get(
+          'https://my-game-m48h.onrender.com/api/plots'
+        );
         console.log('✅ Fetched plots:', res.data); // ← Add this
         setPlots(res.data.plots);
       } catch (err) {
