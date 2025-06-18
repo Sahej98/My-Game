@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 
-const SECRET = 'your_super_secret_key'; // Use environment variable in production
+const SECRET = process.env.SECRET_KEY; // Use environment variable in production
 
 exports.register = async (req, res) => {
   try {
