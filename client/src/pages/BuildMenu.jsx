@@ -5,12 +5,19 @@ export default function BuildMenu({ onSelect, onClose }) {
   return (
     <div className='build-cont'>
       <h1>Build Menu</h1>
+      <button className='close-btn' onClick={onClose}>
+        ❌ Close
+      </button>
+
       {buildings.map((category) => (
         <div key={category.type} className='building-category'>
           <h2>{category.type} Buildings</h2>
           <div className='buildings'>
             {category.buildings.map((building, index) => (
-              <div className='building' key={index}>
+              <div
+                className='building'
+                key={index}
+                onClick={() => onSelect(building)}>
                 <img src={building.image} alt={building.name} />
                 <div className='building-details'>
                   <p className='building-name'>{building.name}</p>

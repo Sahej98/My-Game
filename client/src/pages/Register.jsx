@@ -20,7 +20,7 @@ export default function Register() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'https://my-game-m48h.onrender.com/api/auth/register',
+        'http://localhost:5000/api/auth/register',
         form
       );
 
