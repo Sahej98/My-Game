@@ -1,50 +1,74 @@
+/* Main container */
 .build-container {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  width: 100%;
+  height: 80vh;
   display: flex;
   gap: 20px;
   padding: 20px;
+  overflow-y: auto;
   color: white;
   background-color: #1f1f1f;
-  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Summary left panel */
 .build-summary {
   background-color: #2a2a2a;
   padding: 20px;
   border-radius: 12px;
-  min-width: 200px;
+  width: 30%;
   text-align: center;
 }
 
 .building-image {
-  width: 100px;
+  width: 150px;
   margin-bottom: 10px;
 }
 
-.robot-btn,
-.rename-btn {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 8px;
-  background-color: #343a40;
-  border: 1px solid #666;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
+/* Action buttons */
+.building-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.robot-btn:hover,
-.rename-btn:hover {
-  background-color: #495057;
+.building-actions button {
+  width: 80%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.building-actions button:hover {
+  background-color: #3f3f3f;
+  color: #fff;
+}
+
+/* Products panel */
+.product-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 70%;
 }
 
 .product-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  flex: 1;
 }
 
+/* Product cards */
 .product-card {
   background-color: #2a2a2a;
   padding: 15px;
@@ -52,60 +76,75 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
+/* Product image */
 .product-img {
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
+/* Product details section */
 .product-details {
   flex: 1;
+  min-width: 150px;
 }
 
+.product-details h4 {
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+}
+
+/* Requirements section */
 .requirements {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+.requirement-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .requirement-icons span {
-  margin: 5px;
-  display: inline-block;
+  margin: 4px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
 }
 
 .req-icon {
-  width: 18px;
-  vertical-align: middle;
+  width: 28px;
+  height: 28px;
   margin-left: 4px;
+  vertical-align: middle;
 }
 
-.quantity-control {
+/* Quantity input */
+.product-quantity {
+  width: 100px;
   text-align: center;
 }
 
-.quantity-control input {
-  padding: 6px;
+.product-quantity input {
   width: 80px;
+  padding: 6px;
   border-radius: 6px;
-  border: 1px solid #aaa;
-  margin-bottom: 6px;
+  border: 1px solid #666;
+  background-color: #333;
+  color: white;
   text-align: center;
 }
 
-.quantity-btns button {
-  margin: 0 4px;
-  padding: 6px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.quantity-btns button:hover {
-  background-color: #0056b3;
-}
-
+/* Close button */
 .close-btn {
   position: absolute;
   top: 20px;
@@ -116,4 +155,33 @@
   border-radius: 6px;
   padding: 6px 10px;
   cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Optional: Responsive layout */
+@media (max-width: 768px) {
+  .build-container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .build-summary,
+  .product-cont {
+    width: 100%;
+  }
+
+  .building-actions button {
+    width: 100%;
+  }
+
+  .product-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .requirements,
+  .product-quantity {
+    width: 100%;
+  }
 }

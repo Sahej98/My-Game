@@ -1,8 +1,9 @@
 .build-cont {
   position: absolute;
+  top: 10vh;
   left: 0;
   height: 80vh;
-  overflow: scroll;
+  overflow-y: scroll;
   width: 100%;
   background-color: #fff;
   padding: 1rem 3rem;

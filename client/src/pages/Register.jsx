@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../styles/Register.css';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Register() {
   const [form, setForm] = useState({
     email: '',
@@ -19,10 +21,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/auth/register',
-        form
-      );
+      const res = await axios.post(`${API_URL}/api/auth/register`, form);
 
       // ✅ Save user ID and token to localStorage
       localStorage.setItem('userId', res.data.userId);

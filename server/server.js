@@ -1,21 +1,15 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
 require('dotenv').config();
-const userRoutes = require('./routes/userRoute');
-const authRoutes = require('./routes/authRoute');
+const express = require('express'), mongoose = require('mongoose'), cors = require('cors');
+const authRouter = require('./routes/authRoute'),
+ userRouter = require('./routes/userRoute');
+const buildingsRouter = require('./routes/buildingRoute');
 
 const app = express();
+app.use(cors(), express.json());
+app.use('/api/auth', authRouter);
+app.use('/api/buildings', buildingsRouter);
+app.use('/api', userRouter);
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Routes
-app.use('/api', userRoutes);
-app.use('/api/auth', authRoutes);
-
-// DB Connection
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => app.listen(5000, () => console.log('Server running on port 5000')))
-  .catch(err => console.error(err));
+  .then(() => app.listen(process.env.PORT, () => console.log(`Server up on ${process.env.PORT}`)))
+  .catch(err => console.error('DB connection', err));

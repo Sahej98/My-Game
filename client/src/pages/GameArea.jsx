@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/GameArea.css';
 import Plot from '../components/Plot';
-import BuildMenu from '../pages/BuildMenu';
-import BuildInfo from '../pages/BuildInfo';
+import '../styles/GameArea.css';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function GameArea() {
   const [plots, setPlots] = useState([]);
-  const [selectedPlot, setSelectedPlot] = useState(null);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlots = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/plots');
-        setPlots(res.data.plots);
+        const res = await axios.get(`${API_URL}/api/plots`);
+        setPlots(res.data.plots || []);
       } catch (err) {
         console.error('❌ Error fetching plots:', err);
       }
@@ -22,18 +23,21 @@ export default function GameArea() {
 
     fetchPlots();
   }, []);
+  
 
   const handlePlotClick = (plot, index) => {
-    console.log('🟢 Plot clicked:', plot);
-
     if (!plot.unlocked) {
       setMessage('🔒 This plot is not yet unlocked!');
-      setSelectedPlot(null);
       setTimeout(() => setMessage(''), 2000);
       return;
     }
 
-    setSelectedPlot({ ...plot, index });
+    // Navigate based on whether the plot has a building
+    if (plot.building) {
+      navigate(`/info/${index}`); // For showing BuildInfo
+    } else {
+      navigate(`/build/${index}`); // For showing BuildMenu
+    }
   };
 
   return (
@@ -51,13 +55,6 @@ export default function GameArea() {
         <p>Loading plots...</p>
       )}
 
-      {/* UI based on plot type */}
-      {selectedPlot && !selectedPlot.building && (
-        <BuildMenu plot={selectedPlot} />
-      )}
-      {selectedPlot && selectedPlot.building && (
-        <BuildInfo plot={selectedPlot} />
-      )}
       {message && <div className='plot-message'>{message}</div>}
     </div>
   );

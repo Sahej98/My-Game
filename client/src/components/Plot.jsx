@@ -1,16 +1,13 @@
 import '../styles/Plot.css';
-import emptyImage from '../assets/empty.png';
-import lockedImage from '../assets/locked.png';
-import farmImage from '../assets/farm.png';
-import groceryImage from '../assets/grocery.png';
+import emptyImage from '/assets/empty.png';
+import lockedImage from '/assets/locked.png';
 
 export default function Plot({ id, plot, onClick }) {
   const { unlocked, building } = plot;
 
   const getImageSrc = () => {
     if (!unlocked) return lockedImage;
-    if (building?.name === 'Farm') return farmImage;
-    if (building?.name === 'Grocery Store') return groceryImage;
+    if (building?.image) return building.image; // Use dynamic image from backend
     return emptyImage;
   };
 

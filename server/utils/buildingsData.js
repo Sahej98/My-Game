@@ -1,43 +1,42 @@
+// utils/buildingsData.js
+
 module.exports = {
-    Farm: {
+  production: [
+    {
+      id: 'farm',
       name: 'Farm',
       image: '/assets/farm.png',
+      cost: [50, 30, 20, 10], // maybe per level
       level: 1,
-      wages: 20,
-      workers: 5,
-      management: 1,
       products: [
         {
-          name: 'Wheat',
-          image: '/assets/wheat.png',
-          production: 10,
-          wages: 2,
-          stock: 100,
-          requirements: [
-            { quantity: 2, icon: '/assets/water.png' }
-          ]
-        }
-      ]
+          id: 'apple',
+          productionPerHour: 100, // Produces 100 apples per hour
+          wagesPerHour: 50, // Pays $50 per hour
+          requirementsPerHour: [
+            // Requirements per hour
+            { id: 'seed', quantity: 20 },
+            { id: 'water', quantity: 100 },
+          ],
+        },
+      ],
     },
-    'Grocery Store': {
+  ],
+
+  retail: [
+    {
+      id: 'grocery',
       name: 'Grocery Store',
       image: '/assets/grocery.png',
+      cost: [80, 40, 30, 20],
       level: 1,
-      wages: 30,
-      workers: 4,
-      management: 2,
       products: [
         {
-          name: 'Bread',
-          image: '/assets/bread.png',
-          production: 5,
-          wages: 3,
-          stock: 50,
-          requirements: [
-            { quantity: 1, icon: '/assets/wheat.png' }
-          ]
-        }
-      ]
-    }
-  };
-  
+          id: 'apple',
+          wagesPerHour: 20, // Wages to sell apples per hour
+          sellRatePerHour: 50,
+        },
+      ],
+    },
+  ],
+};

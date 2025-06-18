@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
@@ -15,10 +17,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/auth/login',
-        form
-      );
+      const res = await axios.post(`${API_URL}/api/auth/login`, form);
 
       localStorage.setItem('userId', res.data.userId);
       localStorage.setItem('token', res.data.token);

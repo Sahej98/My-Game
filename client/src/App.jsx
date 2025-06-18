@@ -3,6 +3,8 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import GameArea from './pages/GameArea';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import BuildMenu from './pages/BuildMenu';
+import BuildInfo from './pages/BuildInfo';
 import StatusBar from './components/StatusBar';
 import ActionBar from './components/ActionBar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -27,6 +29,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path='/build/:plotIndex' element={<BuildMenu />} />
+        <Route path='/info/:plotIndex' element={<BuildInfo />} />
         {/* Add more routes if needed */}
       </Routes>
 

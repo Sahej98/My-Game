@@ -1,21 +1,43 @@
 const mongoose = require('mongoose');
-const { plotSchema } = require('./plotModel'); // Import the schema, not just the model
+const { plotSchema } = require('./plotModel');
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  companyName: { type: String, required: true },
+  email: { type: String, unique: true },
+  password: String,
+  companyName: String,
   profilePic: { type: String, default: '' },
   level: { type: Number, default: 1 },
   exp: { type: Number, default: 0 },
   cash: { type: Number, default: 20000 },
   inventory: { type: Array, default: [] },
-  plots: { 
-    type: [plotSchema], 
-    default: Array(28).fill().map((_, i) => ({
-      unlocked: i < 4,
-      building: i === 0 ? 'Farm' : i === 1 ? 'Grocery Store' : null
-    }))
+  plots: {
+    type: [plotSchema],
+    default: Array(28).fill().map((_, i) => {
+      if (i === 0) {
+        return {
+          unlocked: true,
+          building: {
+            name: 'Farm',
+            image: '/assets/farm.png',
+            level: 1,
+          }
+        };
+      } else if (i === 1) {
+        return {
+          unlocked: true,
+          building: {
+            name: 'Grocery Store',
+            image: '/assets/grocery.png',
+            level: 1,
+          }
+        };
+      } else {
+        return {
+          unlocked: i < 4, // Unlock first 4 for testing
+          building: null
+        };
+      }
+    })
   }
 });
 

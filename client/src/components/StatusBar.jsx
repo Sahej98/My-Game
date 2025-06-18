@@ -4,6 +4,8 @@ import MainMenu from './MainMenu';
 import { Menu } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function StatusBar() {
   const [visible, setVisible] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -15,8 +17,8 @@ export default function StatusBar() {
     const fetchData = async () => {
       try {
         const [userRes, configRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/user/${userId}`),
-          axios.get('http://localhost:5000/api/level-config'),
+          axios.get(`${API_URL}/api/user/${userId}`),
+          axios.get(`${API_URL}/api/level-config`),
         ]);
         setUserData(userRes.data);
         setLevelConfig(configRes.data);

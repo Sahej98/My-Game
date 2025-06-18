@@ -1,24 +1,19 @@
+// routes/plotRoutes.js
 const express = require('express');
 const router = express.Router();
-const Plot = require('../models/plotModel');
-const buildingsData = require('../utils/buildingsData');
 
 router.get('/', async (req, res) => {
   try {
-    const plots = await Plot.find();
+    const user = await User.findOne();
 
-    const enrichedPlots = plots.map(plot => {
-      const plain = plot.toObject();
-      if (plain.building) {
-        plain.building = buildingsData[plain.building] || null;
-      }
-      return plain;
-    });
+    if (!user) return res.status(404).json({ error: 'No user found' });
 
-    res.json({ plots: enrichedPlots });
+    res.json({ plots: user.plots });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Failed to fetch plots' });
   }
 });
+
 
 module.exports = router;
