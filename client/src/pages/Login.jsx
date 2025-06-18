@@ -20,12 +20,11 @@ export default function Login() {
         form
       );
 
-      // ✅ Save user ID and token to localStorage
       localStorage.setItem('userId', res.data.userId);
       localStorage.setItem('token', res.data.token);
 
       setMessage('✅ Logged in!');
-      navigate('/'); // redirect to main game/dashboard
+      navigate('/');
     } catch (err) {
       console.error(err);
       setMessage('❌ Invalid email or password.');
@@ -53,9 +52,14 @@ export default function Login() {
           required
         />
         <button type='submit'>Login</button>
-        <a href="/register">Register</a>
         {message && <p className='message'>{message}</p>}
       </form>
+
+      {/* 🔹 Register Button */}
+      <div className='register-link'>
+        <p>Don't have an account?</p>
+        <button onClick={() => navigate('/register')}>Register</button>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import '../styles/Login.css';
+import '../styles/Register.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
@@ -67,6 +67,12 @@ export default function Register() {
         <button type='submit'>Register</button>
         {message && <p className='message'>{message}</p>}
       </form>
+
+      {/* 🔹 Login Button */}
+      <div className='login-link'>
+        <p>Already have an account?</p>
+        <button onClick={() => navigate('/login')}>Login</button>
+      </div>
     </div>
   );
 }
