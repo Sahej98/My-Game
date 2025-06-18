@@ -53,6 +53,7 @@ export default function Login() {
           required
         />
         <button type='submit'>Login</button>
+        <a href="/register">Register</a>
         {message && <p className='message'>{message}</p>}
       </form>
     </div>
