@@ -9,6 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export default function GameArea() {
   const [plots, setPlots] = useState([]);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,41 +19,41 @@ export default function GameArea() {
         setPlots(res.data.plots || []);
       } catch (err) {
         console.error('❌ Error fetching plots:', err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPlots();
   }, []);
-  
 
-  const handlePlotClick = (plot, index) => {
+  const handlePlotClick = (plot) => {
     if (!plot.unlocked) {
       setMessage('🔒 This plot is not yet unlocked!');
       setTimeout(() => setMessage(''), 2000);
       return;
     }
 
-    // Navigate based on whether the plot has a building
     if (plot.building) {
-      navigate(`/info/${index}`); // For showing BuildInfo
+      navigate(`/info/${plot._id}`);
     } else {
-      navigate(`/build/${index}`); // For showing BuildMenu
+      navigate(`/build/${plot._id}`);
     }
   };
 
   return (
     <div className='game-cont'>
-      {plots.length > 0 ? (
-        plots.map((plot, i) => (
+      {loading ? (
+        <p>Loading plots...</p>
+      ) : (
+        plots.map((plot) => (
           <Plot
-            key={i}
-            id={i + 1}
+            key={plot._id}
+            id={plot._id}
             plot={plot}
-            onClick={() => handlePlotClick(plot, i)}
+            onClick={handlePlotClick}
           />
         ))
-      ) : (
-        <p>Loading plots...</p>
       )}
 
       {message && <div className='plot-message'>{message}</div>}

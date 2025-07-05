@@ -1,4 +1,7 @@
-// utils/buildingsData.js
+const generateUpgradeCost = (baseCost, levels, multiplier = 1.25) =>
+  Array.from({ length: levels - 1 }, (_, i) =>
+    Math.round(baseCost * Math.pow(multiplier, i + 1))
+  );
 
 module.exports = {
   production: [
@@ -6,21 +9,24 @@ module.exports = {
       id: 'farm',
       name: 'Farm',
       image: '/assets/farm.png',
-      cost: [50, 30, 20, 10], // maybe per level
       level: 1,
+      maxLevel: 5,
+      cost: [50, 30, 20, 10],
+      upgradeCost: generateUpgradeCost(50, 5), // auto-calculated
+      buildTime: 1800,
       products: [
         {
           id: 'apple',
-          productionPerHour: 100, // Produces 100 apples per hour
-          wagesPerHour: 50, // Pays $50 per hour
+          productionPerHour: 100,
+          wagesPerHour: 50,
           requirementsPerHour: [
-            // Requirements per hour
             { id: 'seed', quantity: 20 },
             { id: 'water', quantity: 100 },
-          ],
-        },
-      ],
-    },
+            { id: 'power', quantity: 10 }
+          ]
+        }
+      ]
+    }
   ],
 
   retail: [
@@ -28,15 +34,18 @@ module.exports = {
       id: 'grocery',
       name: 'Grocery Store',
       image: '/assets/grocery.png',
-      cost: [80, 40, 30, 20],
       level: 1,
+      maxLevel: 5,
+      cost: [80, 40, 30, 20],
+      upgradeCost: generateUpgradeCost(80, 5),
+      buildTime: 1200,
       products: [
         {
           id: 'apple',
-          wagesPerHour: 20, // Wages to sell apples per hour
           sellRatePerHour: 50,
-        },
-      ],
-    },
-  ],
+          wagesPerHour: 20
+        }
+      ]
+    }
+  ]
 };

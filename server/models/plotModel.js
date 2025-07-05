@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const plotSchema = new mongoose.Schema({
+  _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
   unlocked: { type: Boolean, default: false },
   building: {
     type: {
@@ -12,5 +13,9 @@ const plotSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Plot', plotSchema);
-module.exports.plotSchema = plotSchema;
+const Plot = mongoose.model('Plot', plotSchema);
+
+module.exports = {
+  Plot,
+  plotSchema
+};
